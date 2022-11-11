@@ -38,6 +38,11 @@ update sales_detail set s_name=@p_s_name,amount=@p_s_amount,city=@p_city where s
 select * from sales_detail 
 exec update_sales 5,'Raj',6987,'Patna' 
 
+create or alter procedure Delete_sales(@p_s_id int)
+as Delete from sales_detail where s_id=@p_s_id
+exec Delete_sales 2
+select * from sales_detail 
+
 
 create or alter procedure create_sale as
 select s_name,amount,city,email_id from sales_detail where amount <=5000

@@ -30,7 +30,7 @@ namespace netCore.Pages
 
                 SqlCommand cmd = new SqlCommand(query, sqlCon);
                 
-                    cmd.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = update.s_id;
+                 cmd.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = update.s_id;
                 // cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 //cmd.ExecuteNonQuery();
@@ -71,6 +71,8 @@ namespace netCore.Pages
         {
             try
             {
+                update.s_id = Convert.ToInt32(Request.Query["id"]);
+
                 string ConnectionString = "Data Source=INLPF21DBJ6\\MSSQLSERVER1;Initial Catalog=nisha;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
                 SqlConnection sqlCon = new SqlConnection(ConnectionString);
                 
@@ -81,7 +83,11 @@ namespace netCore.Pages
                 update.city = Request.Form["city"];
                 update.email_id = Request.Form["email_id"];
 
-
+                Console.WriteLine(update.s_id);
+                Console.WriteLine(update.s_name);
+                Console.WriteLine(update.amount);
+                Console.WriteLine(update.city);
+                Console.WriteLine(update.email_id);
 
                 sqlCon.Open();
 
